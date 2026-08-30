@@ -1,0 +1,59 @@
+# Copyright 2026 Bytedance Ltd. and/or its affiliates
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+# Mistral-7B-v0.3 -- TTT-NTP release recipe.
+# 48 steps x 64 x 32768 = 0.1B tokens (paper Table 5 budget).
+model:
+  model_path: /path/to/Mistral-7B-v0.3                                  # override: --model.model_path
+  foundation:
+    ttt_mode: true
+    ttt_layers: [0, 6, 12, 18, 24, 30]
+    ttt_proj: true
+    ttt_proj_init: diag_shared
+    ttt_lr: 0.15
+    ttt_chunk: 1024
+    ttt_inner_opt: sgd
+    ttt_norm_preserve: true
+    ttt_target: hidden_states
+    ttt_conv: false
+    ttt_predict_mode: next
+
+data:
+  train_path: /path/to/hf-long-data-collections-sharded   # override: --data.train_path
+  train_size: 20000000000
+  dataloader_type: native
+  datasets_type: iterable
+  data_type: plaintext
+  max_seq_len: 32768
+  text_keys: text
+  drop_last: true
+
+train:
+  output_dir: /path/to/output                                # override: --train.output_dir
+  data_parallel_mode: fsdp2
+  ulysses_parallel_size: 1
+  global_batch_size: 64
+  micro_batch_size: 1
+  rmpad: false
+  rmpad_with_pos_ids: false
+  dyn_bsz: false
+  dyn_bsz_margin: 0
+  use_wandb: false
+  max_steps: 48
+  optimizer: adamw
+  lr: 5.0e-6
+  lr_warmup_ratio: 0.05
+  lr_decay_style: cosine
+  lr_decay_ratio: 0.90
+  weight_decay: 0.1
+  max_grad_norm: 1.0
+  seed: 42
+  enable_mixed_precision: true
+  enable_gradient_checkpointing: true
+  enable_full_shard: true
+  init_device: meta
+  ckpt_manager: dcp
+  save_steps: 48
+  save_hf_weights: true
+  save_async: false

@@ -1,0 +1,41 @@
+This project includes third-party components that are retained under their
+original copyright and license terms.
+
+1. HuggingFace Transformers / LLaMA-derived components
+   Upstream source:
+   - HuggingFace Transformers v4.57.3
+   Paths:
+   - hf_models/hf_llama/configuration_llama.py
+   - hf_models/hf_llama/modeling_llama.py
+   - inference_model/hf_llama3/configuration_llama.py
+   - inference_model/hf_llama3/modeling_llama.py
+   Original copyright notice:
+   - Copyright 2022 EleutherAI and the HuggingFace Inc. team. All rights reserved.
+   License:
+   - Apache License 2.0
+   License text:
+   - third_party_licenses/hf_llama_APACHE-2.0.txt
+   - third_party_licenses/inference_hf_llama3_APACHE-2.0.txt
+   Notes:
+   - These files may include Bytedance modifications. The original third-party
+     copyright and license notices are preserved in the source files.
+
+2. HuggingFace Transformers / Qwen3-derived components
+   Upstream source:
+   - HuggingFace Transformers v4.57.3
+   Paths:
+   - hf_models/hf_qwen3/configuration_qwen3.py
+   - hf_models/hf_qwen3/modeling_qwen3.py
+   - inference_model/hf_qwen3/configuration_qwen3.py
+   - inference_model/hf_qwen3/modeling_qwen3.py
+   Original copyright notices:
+   - Copyright 2024 The Qwen team, Alibaba Group and the HuggingFace Inc. team. All rights reserved.
+   - Copyright 2025 The Qwen team, Alibaba Group and the HuggingFace Inc. team. All rights reserved.
+   License:
+   - Apache License 2.0
+   License text:
+   - third_party_licenses/hf_qwen3_APACHE-2.0.txt
+   - third_party_licenses/inference_hf_qwen3_APACHE-2.0.txt
+   Notes:
+   - These files may include Bytedance modifications. The original third-party
+     copyright and license notices are preserved in the source files.
